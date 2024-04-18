@@ -13,7 +13,7 @@ body {
 .cart__product-count {
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   border: 2px solid green;
   border-radius: 50%;
   padding: 2px 5px;
@@ -88,4 +88,23 @@ body {
 
 .product-shadow {
   position: absolute;
+}
+
+.cart__product-delete {
+	width: 20px;
+	aspect-ratio: 1;
+	background-image: url('https://i.ibb.co/MBph4KR/cross-svgrepo-com.png');
+	background-color: #fff;
+	background-repeat: no-repeat;
+	background-size: contain;
+	position: absolute;
+	right: -4px;
+	top: -18px;
+	border: 2px solid green;
+	border-radius: 50%;
+}
+
+.cart__product-delete:hover{
+	background-color: #fff;
+	transform: scale(1.2);
 }
