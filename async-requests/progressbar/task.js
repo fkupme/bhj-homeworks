@@ -19,7 +19,7 @@ class ProgressBar{
 		
 		xhr.upload.addEventListener('progress', (e)=>{
 				this.changeProgress(e)
-		}, false);
+		});
 
 		xhr.open('POST', 'https://students.netoservices.ru/nestjs-backend/upload')
 
@@ -27,7 +27,7 @@ class ProgressBar{
 	}
 
 	changeProgress(e) {
-			 this.progress.value = Math.round(e.loaded / e.total);
+		this.progress.value = e.loaded / e.total
 	}
 }
 new ProgressBar('.card').getFormData();
