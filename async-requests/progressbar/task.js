@@ -3,27 +3,31 @@ class ProgressBar{
 		this.container = document.querySelector(container);
 		this.progress = this.container.querySelector('progress');
 		this.form = this.container.querySelector('form');
-		this.sendForm();
 	}
 
-	sendForm(){
-		this.form.addEventListener('submit', ()=>{
-			data = new FormData(this.form);
-			console.log(data);
-			const xhr = new XMLHttpRequest();
-		
-		xhr.addEventListener('progress', (e)=>{
-			console.log(e.type, e.loaded)
+	getFormData(){
+		this.form.addEventListener('submit', (e)=>{
+			e.preventDefault();
+			const data = new FormData(this.form);
+			this.sendForm(data);
 		});
+	}
 
-		xhr.addEventListener('load', (e)=>{
-			console.log(e.type, e.loaded)
-		});
+	sendForm(data){
+		
+		const xhr = new XMLHttpRequest();
+		
+		xhr.upload.addEventListener('progress', (e)=>{
+				this.changeProgress(e)
+		}, false);
+
 		xhr.open('POST', 'https://students.netoservices.ru/nestjs-backend/upload')
 
 		xhr.send(data);
-		});
-		
+	}
+
+	changeProgress(e) {
+			 this.progress.value = Math.round(e.loaded / e.total);
 	}
 }
-new ProgressBar('.card');
+new ProgressBar('.card').getFormData();
